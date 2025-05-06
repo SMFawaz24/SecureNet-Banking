@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SecureNet - Online Banking System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div id="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <h1><i class="fas fa-university"></i> SecureNet</h1>
+                <p>Secure Online Banking</p>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="app-container" class="hidden">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-university"></i> SecureNet</h2>
+            </div>
+            <ul class="nav-menu">
+                <li class="active" data-page="dashboard"><i class="fas fa-home"></i> Dashboard</li>
+                <li data-page="accounts"><i class="fas fa-wallet"></i> Accounts</li>
+                <li data-page="transactions"><i class="fas fa-exchange-alt"></i> Transactions</li>
+                <li data-page="transfer"><i class="fas fa-paper-plane"></i> Transfer</li>
+            </ul>
+            <div class="sidebar-footer">
+                <button id="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="user-info">
+                    <span>Welcome, <span id="user-name">User</span></span>
+                    <span class="date">April 18, 2025</span>
+                </div>
+            </header>
+
+            <div class="content">
+                <!-- Dashboard Page -->
+                <div class="page active" id="dashboard-page">
+                    <h1>Dashboard</h1>
+                    <div class="summary-cards">
+                        <div class="card total-balance">
+                            <div class="card-icon"><i class="fas fa-wallet"></i></div>
+                            <div class="card-content">
+                                <h3>Total Balance</h3>
+                                <p id="total-balance-amount" class="balance-display">$0.00</p>
+                                <small class="balance-update-time">Updated just now</small>
+                                <div class="balance-refresh">
+                                    <button id="refresh-balance" class="icon-button" title="Refresh balance">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card account-count">
+                            <div class="card-icon"><i class="fas fa-landmark"></i></div>
+                            <div class="card-content">
+                                <h3>Accounts</h3>
+                                <p id="account-count">0</p>
+                            </div>
+                        </div>
+                        <div class="card last-transaction">
+                            <div class="card-icon"><i class="fas fa-clock"></i></div>
+                            <div class="card-content">
+                                <h3>Last Transaction</h3>
+                                <p id="last-transaction-date">None</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-header">
+                            <h2>Your Accounts</h2>
+                            <div class="actions">
+                                <button class="btn btn-primary deposit-btn"><i class="fas fa-plus"></i> Deposit</button>
+                                <button class="btn btn-secondary withdraw-btn"><i class="fas fa-minus"></i> Withdraw</button>
+                            </div>
+                        </div>
+                        <div class="accounts-grid" id="accounts-container">
+                            <!-- Accounts will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="section-header">
+                            <h2>Recent Transactions</h2>
+                            <button class="btn btn-text" id="view-all-transactions">View All</button>
+                        </div>
+                        <div class="transactions-list" id="recent-transactions">
+                            <!-- Transactions will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accounts Page -->
+                <div class="page" id="accounts-page">
+                    <h1>My Accounts</h1>
+                    <div class="accounts-list" id="full-accounts-list">
+                        <!-- Accounts will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Transactions Page -->
+                <div class="page" id="transactions-page">
+                    <h1>Transaction History</h1>
+                    <div class="filters">
+                        <div class="filter-group">
+                            <label for="account-filter">Account</label>
+                            <select id="account-filter">
+                                <option value="all">All Accounts</option>
+                                <!-- Options will be populated by JavaScript -->
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <label for="type-filter">Type</label>
+                            <select id="type-filter">
+                                <option value="all">All Types</option>
+                                <option value="Deposit">Deposit</option>
+                                <option value="Withdrawal">Withdrawal</option>
+                                <option value="Transfer">Transfer</option>
+                            </select>
+                        </div>
+                        <button class="btn btn-primary" id="apply-filters">Apply Filters</button>
+                    </div>
+                    <div class="transactions-list" id="all-transactions">
+                        <!-- Transactions will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Transfer Page -->
+                <div class="page" id="transfer-page">
+                    <h1>Transfer Money</h1>
+                    <div class="transfer-container">
+                        <form id="transfer-form">
+                            <div class="form-group">
+                                <label for="from-account">From Account</label>
+                                <select id="from-account" required>
+                                    <option value="">Select Account</option>
+                                    <!-- Options will be populated by JavaScript -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="to-account">To Account</label>
+                                <select id="to-account" required>
+                                    <option value="">Select Account</option>
+                                    <!-- Options will be populated by JavaScript -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="amount">Amount</label>
+                                <div class="amount-input">
+                                    <span class="currency">$</span>
+                                    <input type="number" id="amount" min="0.01" step="0.01" placeholder="0.00" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Transfer</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for transactions -->
+    <div id="transaction-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title">Deposit</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="transaction-form">
+                    <div class="form-group">
+                        <label for="modal-account">Select Account</label>
+                        <select id="modal-account" required>
+                            <option value="">Select Account</option>
+                            <!-- Options will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-amount">Amount</label>
+                        <div class="amount-input">
+                            <span class="currency">$</span>
+                            <input type="number" id="modal-amount" min="0.01" step="0.01" placeholder="0.00" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="modal-submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

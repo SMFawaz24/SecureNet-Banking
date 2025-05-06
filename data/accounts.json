@@ -1,0 +1,56 @@
+[
+  {
+    "account_id": 1,
+    "account_type": "Savings",
+    "balance": 4900,
+    "name": "Alice Johnson"
+  },
+  {
+    "account_id": 2,
+    "account_type": "Checking",
+    "balance": 3000,
+    "name": "Bob Smith"
+  },
+  {
+    "account_id": 17,
+    "account_type": "Savings",
+    "balance": 5000,
+    "name": "Alice Johnson"
+  },
+  {
+    "account_id": 18,
+    "account_type": "Checking",
+    "balance": 561507572.5,
+    "name": "Alice Johnson"
+  },
+  {
+    "account_id": 19,
+    "account_type": "Savings",
+    "balance": 12100.75,
+    "name": "Bob Smith"
+  },
+  {
+    "account_id": 20,
+    "account_type": "Checking",
+    "balance": 25000,
+    "name": "Charlie Chaplin"
+  },
+  {
+    "account_id": 21,
+    "account_type": "Checking",
+    "balance": 1500.25,
+    "name": "Daniel David"
+  },
+  {
+    "account_id": 22,
+    "account_type": "Savings",
+    "balance": 8750.6,
+    "name": "John Smith"
+  },
+  {
+    "account_id": 23,
+    "account_type": "Checking",
+    "balance": 45000,
+    "name": "Bob Smith"
+  }
+]
